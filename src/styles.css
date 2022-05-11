@@ -1,0 +1,80 @@
+*, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body {
+    padding: 20px 0 0 0;
+    box-sizing: border-box;
+}
+
+/* Editing the intro section */
+
+.logo {
+    margin-left: 40px;
+}
+
+.intro {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat( 4, 25%);
+    grid-template-rows: 932px;
+    height: 932px;
+}
+
+.tagline {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    width: 42vw;
+    height: 47%;
+    padding: 2% 4% 2% 7%;
+    margin-top: 130px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 3px 27px #00000024;
+    border-top-right-radius: 76px;
+    border-bottom-right-radius: 76px;
+    z-index: 100;
+}
+
+h1 {
+    font: bold 88px "Playfair Display";
+    color: #2289FF;
+    margin: 0;
+}
+
+h1 span {
+    color: #186AA5;
+}
+
+.tagline p {
+    color: #303030;
+    font: bold 20px "Noto Sans KR";
+    width: 65%;
+    margin-top: 30px;
+}
+
+.intro-background {
+    background-image: url("./media/pierre-chatel-innocenti-gxyeia7Syuk-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 1406px;
+    height: 100%;
+    border-radius: 48px;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    z-index: 1;
+}
+
+.featured {
+    text-align: center;
+}
+
