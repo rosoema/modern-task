@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="Description" content="Modern builds award winning exclusive properties and luxury apartments worldwide." />
+        <script src="./src/index.js"></script>
+        <link rel="stylesheet" href="./src/styles.css" />
+        <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css" />
+        <title>Modern | Exclusive Properties</title>
+    </head>
+
+    <body>
+
+        <!-- Logo and Intro Section --> 
+
+        <div class="logo">
+            <img src="./src/media/Logo.svg" alt="modern" />
+        </div>
+
+        <div class="intro">
+            <div class="tagline">
+                <h1>Let's find <span>your Dream..</span></h1>
+                <p>Building award winning properties across London UK and the All world</p>
+            </div>
+            <div class="intro-background">
+                // Background defined in styles.css
+            </div>
+        </div>
+
+        <!-- Featured Properties Section -->
+
+        <div class="featured">
+            <h2>Featured Apartment</h2>
+            <p>The Most frequently searched and most popular apartment of the application will be in the list</p>
+
+            <div id="apartments">
+                <!-- Featured apartments list generated through a function following window.onload in index.js -->
+            </div>
+        </div>
+
+        <div class="apt-rates">
+            <h2>Apartment Rates</h2>
+            <div class="chart-btns">
+                <button type="button" class="chart-btn graph" id="graph-btn" onclick="chartToggle(this)">Graph</button>
+                <button type="button" class="chart-btn pie" id="pie-btn" onclick="chartToggle(this)">Pie-Chart</button>
+            </div>
+
+            <!-- this is where the chart goes -->
+
+            <div id="rates1" style="max-height: 30vw; width: 100%; display: none;"></div>
+
+            <div id="rates2" style="max-height: 30vw; width: 100%; display: none;"></div>
+
+            <div class="data-btns">
+                <button type="button" class="data-btn">Randomize data locally</button>
+                <button type="button" class="data-btn">Get data from server</button>
+                <button type="button" class="data-btn active">Get data from local Node.js</button>
+            </div>
+        </div>
+
+        <footer>
+
+            <div class="footer-main">
+
+                <div>
+                    <img src="./src/media/Logo.svg" alt="modern-logo" />
+                    <p>The most beautiful exclusive properties and luxury apartments</p>
+                    <div class="icon-group">
+                        <i class="fa fa-facebook-f"></i>
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-telegram"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Useful Links</h4>
+                    <p>About</p>
+                    <p>Partners</p>
+                    <p>Contact</p>
+                </div>
+
+                <div>
+                    <h4>Help&quest;</h4>
+                    <p>FAQ</p>
+                    <p>Terms &amp; Conditions</p>
+                    <p>Policy</p>
+                    <p>Privacy</p>
+                </div>
+
+                <div>
+                    <h4>Address</h4>
+                    <p>113-115 Old Brompton Road</p>
+                    <p>SW7 3LE LONDON, UNITED KINGDOM</p>
+                    <p>website: www.mordern.com</p>
+                    <p>mobie</p>
+                </div>
+
+            </div>
+
+            <div class="footer-under">
+                <small>&copy; Copyright 2021, morden.com</small>
+                <small>Terms &amp; Conditions &verbar; Privacy Policy</small>
+            </div>
+
+        </footer>
+        
+        <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>  
+        <script type="text/javascript" src="./node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
+    </body>
+
+</html>
