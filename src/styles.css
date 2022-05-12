@@ -101,6 +101,7 @@ h2 {
     display: flex;
     align-content: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .apt-tile {
@@ -346,4 +347,80 @@ h2 {
 
 .canvasjs-chart-credit {
     display: none;
+}
+
+/* - - - - - Editing the Footer - - - - - */
+
+.footer-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #14395B;
+    color: white;
+    padding: 40px 18%;
+}
+
+.footer-summary {
+    width: 241px;
+}
+
+.footer-summary img {
+    width: 227.59px;
+    height: 61.41px;
+}
+
+.footer-summary p {
+    margin: 25px 0 40px 0;
+    font: normal 14px "Poppins";
+    line-height: 28px;
+}
+
+.footer-main h4 {
+    margin-bottom: 30px;
+    font: bold 18px "Noto Sans KR";
+}
+
+.footer-help {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-help p {
+    font: normal 14px "Noto Sans KR";
+    line-height: 41px;
+}
+
+.footer-under {
+    background-color: #0B2F50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 18%;
+    font: normal 14px "Noto Sans KR";
+}
+
+.icon-group {
+    display: flex;
+}
+
+.icon-group i {
+    width: 44px;
+    height: 44px;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    color: #94B7DB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: 21px;
+}
+
+.fa-twitter {
+    background-color: #2289FF !important;
+    color: white !important;
 }

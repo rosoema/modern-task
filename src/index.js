@@ -151,7 +151,8 @@ window.onload = () => {
             fontSize: 16,
             fontColor: "#186AA5",
             horizontalAlign: "left",
-            verticalAlign: "center"
+            verticalAlign: "center",
+            markerMargin: 3
         },
         data: [{
             type: "pie",
@@ -188,7 +189,8 @@ window.onload = () => {
         dataPointMaxWidth: 20,
         data: [{
             color: "#186AA5",
-            dataPoints: chart_data.bars
+            dataPoints: chart_data.bars,
+            radius: 5
         }]
     });
 	chart2.render();
