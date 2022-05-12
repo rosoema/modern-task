@@ -11,7 +11,7 @@ const apartment_data = [
         bedrooms: 2,
         bathrooms: 2,
         squareFt: 1776,
-        agent_profile: ".src/media/agents/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg",
+        agent_profile: "./src/media/agents/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg",
         apt_image: "src/media/apts/apt1.jpg"
     },
     {
@@ -24,7 +24,7 @@ const apartment_data = [
         bedrooms: 3,
         bathrooms: 2,
         squareFt: 2500,
-        agent_profile: "./src/media/agents/clayton-mpDV4xaFP8c-unsplash.jpg",
+        agent_profile: "./src/media/agents/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
         apt_image: "src/media/apts/apt2.jpg"
     },
     {
@@ -37,7 +37,7 @@ const apartment_data = [
         bedrooms: 2,
         bathrooms: 1,
         squareFt: 1041,
-        agent_profile: "./src/media/agents/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
+        agent_profile: "./src/media/agents/clayton-mpDV4xaFP8c-unsplash.jpg",
         apt_image: "src/media/apts/apt3.jpg"
     }
 ];
@@ -77,8 +77,8 @@ window.onload = () => {
         `
         <div class="apt-tile">
             <div class="apt-background" style="background-image: url(${apt.apt_image})">
-                <p class="distance">${apt.distance}</p>
-                <p class="sticker">${apt.sticker}</p>
+                <span class="distance">${apt.distance} away</span>
+                <span class="sticker">${apt.sticker}</span>
                 <div class="agent-profile" style="background-image: url(${apt.agent_profile})"></div>
             </div>
 
@@ -86,7 +86,7 @@ window.onload = () => {
                 <p class="location"><img src="./src/media/icons/map-marker.svg" id="map-marker"/> ${apt.location}</p>
                 <p class="price">${apt.price}</p>
                 <h3>${apt.name}</h3>
-                <p class=="desc">${apt.description}</p>
+                <p class="desc">${apt.description}</p>
             </div>
 
             <div class="bullet-points">
@@ -107,12 +107,10 @@ window.onload = () => {
                     </div>
 
                     <div>
-                        <div>
-                            <p class="numbers"> ${apt.squareFt} 
-                                <img src="./src/media/icons/squareft.svg" alt="ft-icon"/>
-                            </p>
-                            <p class="num-desc">Square Ft</p>
-                        </div>
+                        <p class="numbers"> ${apt.squareFt} 
+                            <img src="./src/media/icons/squareft.svg" alt="ft-icon"/>
+                        </p>
+                        <p class="num-desc">Square Ft</p>
                     </div>
 
                 </div>
