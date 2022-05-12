@@ -133,6 +133,10 @@ window.onload = () => {
 
     // - - - - - Rendering the chart data - - - - - 
 
+    
+    document.getElementById("rates1").style.visibility = "hidden";
+    document.getElementById("rates1").style.height = "0";
+
     let chart1 = new CanvasJS.Chart("rates1",
 	{
         legend:{
@@ -145,7 +149,6 @@ window.onload = () => {
             type: "pie",
             showInLegend: true,
             legendMarkerType: "square",
-            toolTipContent: "<b>{name}</b>",
             indexLabel: " ",
             legendText: "{name}",
             indexLabelPlacement: "inside",
@@ -168,11 +171,17 @@ window.onload = () => {
 
 function chartToggle(btn){
     if(btn.classList.contains("graph")){
-        document.getElementById("rates2").style.display = "";
+        document.getElementById("rates2").style.visibility = "";
+        document.getElementById("rates2").style.height = "fit-content";
+        document.getElementById("rates1").style.visibility = "hidden";
+        document.getElementById("rates1").style.height = "0";
         btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
         document.getElementById("pie-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
     } else {
-        document.getElementById("rates2").style.display = "none";
+        document.getElementById("rates1").style.visibility = "";
+        document.getElementById("rates1").style.height = "fit-content";
+        document.getElementById("rates2").style.visibility = "hidden";
+        document.getElementById("rates2").style.height = "0";
         btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
         document.getElementById("graph-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
     }

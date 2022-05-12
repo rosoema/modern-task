@@ -318,3 +318,32 @@ h2 {
     padding: 10px 30px;
     margin: 10px;
 }
+
+.canvasjs-chart-container {
+    height: 550px;
+    overflow-y: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 3px 6px #00000029;
+    margin: 0 5px 30px 5px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: white;
+}
+
+#rates1 .canvasjs-chart-container {
+    align-items: center;
+}
+
+#rates2 .canvasjs-chart-container {
+    align-items: flex-end;
+}
+
+.canvasjs-chart-canvas {
+    height: auto;
+    width: 87%;
+}
+
+.canvasjs-chart-credit {
+    display: none;
+}
