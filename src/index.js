@@ -137,8 +137,16 @@ window.onload = () => {
     document.getElementById("rates1").style.visibility = "hidden";
     document.getElementById("rates1").style.height = "0";
 
+
+    CanvasJS.addColorSet("blues", [
+        "#186AA5",
+        "#0FA8E2",
+        "#98E3FE"
+    ]);
+
     let chart1 = new CanvasJS.Chart("rates1",
 	{
+        colorSet: "blues",
         legend:{
             fontSize: 16,
             fontColor: "#186AA5",
@@ -160,7 +168,26 @@ window.onload = () => {
 
     let chart2 = new CanvasJS.Chart("rates2",
 	{
+        axisY: {
+            lineColor: "transparent",
+            tickColor: "transparent",
+            gridDashType: "dot",
+            gridColor: "#186AA5",
+            labelFontFamily: "Noto Sans KR",
+            labelFontSize: 16,
+            labelFontColor: "#186AA5"
+        },
+        axisX:{
+            tickColor: "transparent",
+            lineColor: "#186AA5",
+            lineDashType: "dot",
+            labelFontFamily: "Noto Sans KR",
+            labelFontSize: 16,
+            labelFontColor: "#186AA5"
+        },
+        dataPointMaxWidth: 20,
         data: [{
+            color: "#186AA5",
             dataPoints: chart_data.bars
         }]
     });
