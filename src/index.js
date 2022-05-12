@@ -46,13 +46,13 @@ const apartment_data = [
 
 let chart_data = {
     pie: [
-        {y: 0, name: "Data1"},
+        {y: 4000, name: "Data1"},
         {y: 0, name: "Data2"},
         {y: 0, name: "Data3"}
     ],
 
     bars: [
-        { x: 1, y: 0, label: "Jan."},
+        { x: 1, y: 87, label: "Jan."},
         { x: 2, y: 0,  label: "Feb."},
         { x: 3, y: 0,  label: "Mar."},
         { x: 4, y: 0,  label: "Apr."},
@@ -169,11 +169,11 @@ window.onload = () => {
 function chartToggle(btn){
     if(btn.classList.contains("graph")){
         document.getElementById("rates2").style.display = "";
-        btn.style.cssText = "color: lightblue; text-decoration: underline";
-        document.getElementById("pie-btn").style.cssText = "color: black; text-decoration: none";
+        btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
+        document.getElementById("pie-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
     } else {
         document.getElementById("rates2").style.display = "none";
-        btn.style.cssText = "color: lightblue; text-decoration: underline";
-        document.getElementById("graph-btn").style.cssText = "color: black; text-decoration: none";
+        btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
+        document.getElementById("graph-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
     }
 }

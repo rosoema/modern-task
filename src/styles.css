@@ -279,3 +279,42 @@ h2 {
     width: 26px;
 }
 
+
+/* - - - - - Editing Apt Rates Section - - - - - */
+
+.apt-rates {
+    background-color: #F4F7FA;
+    text-align: center;
+    padding: 70px 115px 80px;
+}
+
+.chart-btns {
+    margin: 40px 0;
+}
+
+.chart-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    font: normal 25px "Noto Sans KR";
+    color: rgba(0, 0, 0, 0.79);
+    margin: 0 30px;
+}
+
+#graph-btn {
+    color: #2289FF;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.data-btn {
+    font: normal 25px "Noto Sans KR";
+    color: rgba(0, 0, 0, 0.79);
+    background: white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 3px 6px #00000029;
+    padding: 10px 30px;
+    margin: 10px;
+}
