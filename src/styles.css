@@ -318,6 +318,12 @@ h2 {
     box-shadow: 0px 3px 6px #00000029;
     padding: 10px 30px;
     margin: 10px;
+    transition: .15s;
+}
+
+.data-btn:active {
+    background-color: #0955ab81;
+    color: white;
 }
 
 .canvasjs-chart-container {
@@ -341,7 +347,6 @@ h2 {
 }
 
 .canvasjs-chart-canvas {
-    height: auto;
     width: 87%;
 }
 

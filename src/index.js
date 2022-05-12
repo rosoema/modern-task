@@ -46,13 +46,13 @@ const apartment_data = [
 
 let chart_data = {
     pie: [
-        {y: 4000, name: "Data1"},
+        {y: 0, name: "Data1"},
         {y: 0, name: "Data2"},
         {y: 0, name: "Data3"}
     ],
 
     bars: [
-        { x: 1, y: 87, label: "Jan."},
+        { x: 1, y: 0, label: "Jan."},
         { x: 2, y: 0,  label: "Feb."},
         { x: 3, y: 0,  label: "Mar."},
         { x: 4, y: 0,  label: "Apr."},
@@ -66,6 +66,85 @@ let chart_data = {
         { x: 12, y: 0,  label: "Dec."}
     ]
 };
+
+// - - - - - Function to render the charts - - - - - 
+
+function ChartRender(){
+    CanvasJS.addColorSet("blues", [
+        "#186AA5",
+        "#0FA8E2",
+        "#98E3FE"
+    ]);
+
+    let chart1 = new CanvasJS.Chart("rates1",
+	{
+        colorSet: "blues",
+        legend:{
+            fontSize: 16,
+            fontColor: "#186AA5",
+            horizontalAlign: "left",
+            verticalAlign: "center",
+            markerMargin: 3
+        },
+        data: [{
+            type: "pie",
+            showInLegend: true,
+            legendMarkerType: "square",
+            indexLabel: " ",
+            legendText: "{name}",
+            indexLabelPlacement: "inside",
+            dataPoints: chart_data.pie
+        }]
+    });
+
+	chart1.render();
+
+    let chart2 = new CanvasJS.Chart("rates2",
+	{
+        axisY: {
+            lineColor: "transparent",
+            tickColor: "transparent",
+            gridDashType: "dot",
+            gridColor: "#186AA5",
+            labelFontFamily: "Noto Sans KR",
+            labelFontSize: 16,
+            labelFontColor: "#186AA5"
+        },
+        axisX:{
+            tickColor: "transparent",
+            lineColor: "#186AA5",
+            lineDashType: "dot",
+            labelFontFamily: "Noto Sans KR",
+            labelFontSize: 16,
+            labelFontColor: "#186AA5"
+        },
+        dataPointMaxWidth: 20,
+        data: [{
+            color: "#186AA5",
+            dataPoints: chart_data.bars,
+            radius: 5
+        }]
+    });
+	chart2.render();
+};
+
+// - - - - - Function to Randomize data locally - - - - - 
+
+function Randomize(){
+    Object.values(chart_data).forEach( value => {
+        value.forEach( data =>  data.y = Math.floor(Math.random() * 51))
+    });
+
+    ChartRender();
+};
+
+// - - - - - Function for the Ajax POST call - - - - - 
+
+function AjaxPOST(){
+    
+}
+
+// - - - - - On Load event - - - - - 
 
 window.onload = () => {
 
@@ -133,67 +212,11 @@ window.onload = () => {
 
     // - - - - - Rendering the chart data - - - - - 
 
-    
+    Randomize();
+
     document.getElementById("rates1").style.visibility = "hidden";
     document.getElementById("rates1").style.height = "0";
 
-
-    CanvasJS.addColorSet("blues", [
-        "#186AA5",
-        "#0FA8E2",
-        "#98E3FE"
-    ]);
-
-    let chart1 = new CanvasJS.Chart("rates1",
-	{
-        colorSet: "blues",
-        legend:{
-            fontSize: 16,
-            fontColor: "#186AA5",
-            horizontalAlign: "left",
-            verticalAlign: "center",
-            markerMargin: 3
-        },
-        data: [{
-            type: "pie",
-            showInLegend: true,
-            legendMarkerType: "square",
-            indexLabel: " ",
-            legendText: "{name}",
-            indexLabelPlacement: "inside",
-            dataPoints: chart_data.pie
-        }]
-    });
-
-	chart1.render();
-
-    let chart2 = new CanvasJS.Chart("rates2",
-	{
-        axisY: {
-            lineColor: "transparent",
-            tickColor: "transparent",
-            gridDashType: "dot",
-            gridColor: "#186AA5",
-            labelFontFamily: "Noto Sans KR",
-            labelFontSize: 16,
-            labelFontColor: "#186AA5"
-        },
-        axisX:{
-            tickColor: "transparent",
-            lineColor: "#186AA5",
-            lineDashType: "dot",
-            labelFontFamily: "Noto Sans KR",
-            labelFontSize: 16,
-            labelFontColor: "#186AA5"
-        },
-        dataPointMaxWidth: 20,
-        data: [{
-            color: "#186AA5",
-            dataPoints: chart_data.bars,
-            radius: 5
-        }]
-    });
-	chart2.render();
 };
 
 // - - - - - Toggle the chart display and the button style on the button click - - - - -
@@ -201,17 +224,17 @@ window.onload = () => {
 function chartToggle(btn){
     if(btn.classList.contains("graph")){
         document.getElementById("rates2").style.visibility = "";
-        document.getElementById("rates2").style.height = "fit-content";
+        document.getElementById("rates2").style.height = "";
         document.getElementById("rates1").style.visibility = "hidden";
         document.getElementById("rates1").style.height = "0";
         btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
         document.getElementById("pie-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
     } else {
         document.getElementById("rates1").style.visibility = "";
-        document.getElementById("rates1").style.height = "fit-content";
+        document.getElementById("rates1").style.height = "";
         document.getElementById("rates2").style.visibility = "hidden";
         document.getElementById("rates2").style.height = "0";
         btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
         document.getElementById("graph-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
     }
-}
+};
