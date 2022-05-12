@@ -116,9 +116,15 @@ window.onload = () => {
                 </div>
 
                 <div class="buttons">
-                    <img src="./src/media/icons/fullscreen-exit.svg" alt="fullscreen-exit-icon" class="button-icons"/>
-                    <img src="./src/media/icons/heart.svg" alt="heart-icon" class="button-icons special"/>
-                    <img src="./src/media/icons/plus-circle.svg" alt="add-icon" class="button-icons"/>
+                    <div class="button-icons">
+                        <img src="./src/media/icons/fullscreen-exit.svg" alt="fullscreen-exit-icon"/>
+                    </div>
+                    <div class="button-icons special">
+                        <img src="./src/media/icons/heart.svg" alt="fullscreen-exit-icon"/>
+                    </div>
+                    <div class="button-icons">
+                        <img src="./src/media/icons/plus-circle.svg" alt="fullscreen-exit-icon"/>
+                    </div>
                 </div>
             </div>
         </div>
