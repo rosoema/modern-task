@@ -160,7 +160,7 @@ function receivedData(data){
 
 function AjaxPOST(){
 
-    $.post("https://api.demoleap.com/exercise", (response) => {
+    $.post("https://cors-anywhere.herokuapp.com/https://api.demoleap.com/exercise", (response) => {
         receivedData(response);
         ChartRender();
     })
