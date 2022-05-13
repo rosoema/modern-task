@@ -138,36 +138,54 @@ function Randomize(){
     ChartRender();
 };
 
+// - - - - - General function to be used after receiving data from the API & the server - - - - - 
+
+function receivedData(data){
+    Object.entries(data).forEach(([key, value]) => {
+        for(let [key1, value1] of Object.entries(chart_data)){
+            if(key == key1){
+                Object.entries(value).forEach(([key3, value3]) => {
+                    value1.forEach(item => {
+                        if(item.label == key3 || item.name == key3){
+                            item.y = value3
+                        }
+                    })
+                })
+            }
+        }
+    })
+}
+
 // - - - - - Function for the Ajax POST call - - - - - 
 
 function AjaxPOST(){
+      
     $.ajax({
         type: "POST",
         url: "https://api.demoleap.com/exercise",
         success: (response) => {
 
-            Object.entries(response).forEach(([key, value]) => {
-                for(let [key1, value1] of Object.entries(chart_data)){
-                    if(key == key1){
-                        Object.entries(value).forEach(([key3, value3]) => {
-                            value1.forEach(item => {
-                                if(item.label == key3 || item.name == key3){
-                                    item.y = value3
-                                }
-                            })
-                        })
-                    }
-                }
-            })
-
+            receivedData(response);
+            console.log(response)
             ChartRender();
         }
     });
+};
+
+// - - - - - Function to get data from the Express server - - - - - 
+
+function serverData(){
+    $.get("http://localhost:3000/", (data) => {
+
+        receivedData(data);
+
+        ChartRender();
+    })
 }
 
 // - - - - - On Load event - - - - - 
 
-window.onload = () => {
+window.addEventListener("load", () => {
 
     // - - - - - Rendering the apartment tiles  - - - - - 
 
@@ -238,7 +256,7 @@ window.onload = () => {
     document.getElementById("rates1").style.visibility = "hidden";
     document.getElementById("rates1").style.height = "0";
 
-};
+});
 
 // - - - - - Toggle the chart display and the button style on the button click - - - - -
 
