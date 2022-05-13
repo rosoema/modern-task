@@ -166,7 +166,6 @@ function AjaxPOST(){
         success: (response) => {
 
             receivedData(response);
-            console.log(response)
             ChartRender();
         }
     });
@@ -178,7 +177,6 @@ function serverData(){
     $.get("http://localhost:3000/", (data) => {
 
         receivedData(data);
-
         ChartRender();
     })
 }
