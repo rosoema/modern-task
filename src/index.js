@@ -45,11 +45,6 @@ const apartment_data = [
 // - - - - - Data for the chart - - - - - 
 
 let chart_data = {
-    pie: [
-        {y: 0, name: "Data1"},
-        {y: 0, name: "Data2"},
-        {y: 0, name: "Data3"}
-    ],
 
     bars: [
         { x: 1, y: 0, label: "Jan."},
@@ -64,7 +59,12 @@ let chart_data = {
         { x: 10, y: 0,  label: "Oct."},
         { x: 11, y: 0,  label: "Nov."},
         { x: 12, y: 0,  label: "Dec."}
-    ]
+    ],
+    pie: [
+        {y: 0, name: "Data1"},
+        {y: 0, name: "Data2"},
+        {y: 0, name: "Data3"}
+    ],
 };
 
 // - - - - - Function to render the charts - - - - - 
@@ -141,7 +141,28 @@ function Randomize(){
 // - - - - - Function for the Ajax POST call - - - - - 
 
 function AjaxPOST(){
-    
+    $.ajax({
+        type: "POST",
+        url: "https://api.demoleap.com/exercise",
+        success: (response) => {
+
+            Object.entries(response).forEach(([key, value]) => {
+                for(let [key1, value1] of Object.entries(chart_data)){
+                    if(key == key1){
+                        Object.entries(value).forEach(([key3, value3]) => {
+                            value1.forEach(item => {
+                                if(item.label == key3 || item.name == key3){
+                                    item.y = value3
+                                }
+                            })
+                        })
+                    }
+                }
+            })
+
+            ChartRender();
+        }
+    });
 }
 
 // - - - - - On Load event - - - - - 
