@@ -81,10 +81,10 @@ function ChartRender(){
         colorSet: "blues",
         legend:{
             fontSize: 16,
+            fontFamily: "Noto Sans KR",
             fontColor: "#186AA5",
             horizontalAlign: "left",
-            verticalAlign: "center",
-            markerMargin: 3
+            verticalAlign: "center"
         },
         data: [{
             type: "pie",
@@ -160,14 +160,10 @@ function receivedData(data){
 
 function AjaxPOST(){
 
-    $.ajax({
-        url: 'https://api.demoleap.com/exercise',
-        type: "POST",
-        success: function (response) {
-            receivedData(response);
-            ChartRender();
-        }
-    });
+    $.post("https://api.demoleap.com/exercise", (response) => {
+        receivedData(response);
+        ChartRender();
+    })
 };
 
 // - - - - - Function to get data from the Express server - - - - - 
