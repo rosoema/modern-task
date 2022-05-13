@@ -159,12 +159,11 @@ function receivedData(data){
 // - - - - - Function for the Ajax POST call - - - - - 
 
 function AjaxPOST(){
-      
-    $.ajax({
-        type: "POST",
-        url: "https://api.demoleap.com/exercise",
-        success: (response) => {
 
+    $.ajax({
+        url: 'https://api.demoleap.com/exercise',
+        type: "POST",
+        success: function (response) {
             receivedData(response);
             ChartRender();
         }
@@ -175,7 +174,6 @@ function AjaxPOST(){
 
 function serverData(){
     $.get("http://localhost:3000/", (data) => {
-
         receivedData(data);
         ChartRender();
     })
