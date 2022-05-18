@@ -142,27 +142,19 @@ function Randomize(){
 
 function receivedData(data){
 
-    Object.entries(data)
-          .forEach( ([data_key1, data_value1]) => {                                      // First we iterate over both objects -- received data first
-
-        for ( let [chart_key1, chart_value1] of Object.entries(chart_data) ){            // then chart_data object
-    
-            if(data_key1 == chart_key1){                                                 // we make sure their keys match
-
-                Object.entries(data_value1)
-                      .forEach(([data_key2, data_value2]) => {                           // If match we go level deeper and iterate over both keys' values -- received data first
-
-                    chart_value1.forEach( item => {                                      // then chart_data object
-
-                        if(item.label == data_key2 || item.name == data_key2){           // We make sure their properties' match
-
-                            item.y = data_value2                                         // If match, we assign the received data's values to targeted chart_data values
+    for(let data_key in data){                                                              // First we iterate over both object (received data and chart_data)
+        for(let chart_key in chart_data){
+            if(data_key == chart_key){                                                      // Then we check if their keys match (e.g. bars == bars)
+                for(let data_key_lvl2 in data[data_key]){                                   // If yes, we iterate over their keys' values
+                    chart_data[chart_key].forEach( prop => {
+                        if(prop.label == data_key_lvl2 || prop.name == data_key_lvl2){      // Since chart_data has more properties, we check for name/label match to the key
+                            prop.y = data[data_key][data_key_lvl2];                         // If they match, we assign the values of received data to chart_data    
                         }
                     })
-                })
+                }
             }
         }
-    })
+    }
 }
 
 // - - - - - Function for the Ajax POST call - - - - - 
