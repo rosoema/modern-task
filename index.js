@@ -156,7 +156,7 @@ function receivedData(data){
 
                         if(item.label == data_key2 || item.name == data_key2){           // We make sure their properties' match
 
-                            item.y = data_value2                                         // If match, we assign the received data's values to chart_data values
+                            item.y = data_value2                                         // If match, we assign the received data's values to targeted chart_data values
                         }
                     })
                 })
