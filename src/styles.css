@@ -303,7 +303,7 @@ h2 {
     margin: 0 30px;
 }
 
-#graph-btn {
+.chart-active {
     color: #2289FF;
     text-decoration: underline;
     font-weight: bold;
@@ -325,6 +325,11 @@ h2 {
 .data-btn:active {
     background-color: #0955ab81;
     color: white;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0;
 }
 
 .canvasjs-chart-container {

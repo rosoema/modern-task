@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="Description" content="Modern builds award winning exclusive properties and luxury apartments worldwide." />
         <link rel="icon" href="./src/media/logo-icon.png" />
-        <script src="./index.js"></script>
         <link rel="stylesheet" href="./src/styles.css" />
         <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,20 +47,20 @@
         <div class="apt-rates">
             <h2>Apartment Rates</h2>
             <div class="chart-btns">
-                <button type="button" class="chart-btn graph" id="graph-btn" onclick="chartToggle(this); ChartRender();">Graph</button>
-                <button type="button" class="chart-btn pie" id="pie-btn" onclick="chartToggle(this); ChartRender();">Pie-Chart</button>
+                <button type="button" class="chart-btn chart-active graph">Graph</button>
+                <button type="button" class="chart-btn pie">Pie-Chart</button>
             </div>
 
             <!-- this is where the chart goes -->
 
-            <div id="rates1" style="width: 100%;"></div>
+            <div class="hidden" id="rates1" style="width: 100%;"></div>
 
             <div id="rates2" style="width: 100%;"></div>
 
             <div class="data-btns">
-                <button type="button" class="data-btn" onclick="Randomize()">Randomize data locally</button>
-                <button type="button" class="data-btn" onclick="AjaxPOST()">Get data from server</button>
-                <button type="button" class="data-btn active" onclick="serverData()">Get data from local Node.js</button>
+                <button type="button" class="data-btn" id="randomize">Randomize data locally</button>
+                <button type="button" class="data-btn" id="ajaxpost">Get data from server</button>
+                <button type="button" class="data-btn" id="serverdata">Get data from local Node.js</button>
             </div>
         </div>
 
@@ -116,6 +115,7 @@
         
         <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>  
         <script type="text/javascript" src="./node_modules/canvasjs/dist/jquery.canvasjs.min.js"></script>
+        <script src="./index.js"></script>
     </body>
 
 </html>

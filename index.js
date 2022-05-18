@@ -141,13 +141,22 @@ function Randomize(){
 // - - - - - General function to be used after receiving data from the API & the server - - - - - 
 
 function receivedData(data){
-    Object.entries(data).forEach(([key, value]) => {
-        for(let [key1, value1] of Object.entries(chart_data)){
-            if(key == key1){
-                Object.entries(value).forEach(([key3, value3]) => {
-                    value1.forEach(item => {
-                        if(item.label == key3 || item.name == key3){
-                            item.y = value3
+
+    Object.entries(data)
+          .forEach( ([data_key1, data_value1]) => {                                      // First we iterate over both objects -- received data first
+
+        for ( let [chart_key1, chart_value1] of Object.entries(chart_data) ){            // then chart_data object
+    
+            if(data_key1 == chart_key1){                                                 // we make sure their keys match
+
+                Object.entries(data_value1)
+                      .forEach(([data_key2, data_value2]) => {                           // If match we go level deeper and iterate over both keys' values -- received data first
+
+                    chart_value1.forEach( item => {                                      // then chart_data object
+
+                        if(item.label == data_key2 || item.name == data_key2){           // We make sure their properties' match
+
+                            item.y = data_value2                                         // If match, we assign the received data's values to chart_data values
                         }
                     })
                 })
@@ -244,28 +253,29 @@ window.addEventListener("load", () => {
     // - - - - - Rendering the chart data - - - - - 
 
     Randomize();
-
-    document.getElementById("rates1").style.visibility = "hidden";
-    document.getElementById("rates1").style.height = "0";
-
 });
 
-// - - - - - Toggle the chart display and the button style on the button click - - - - -
+// Adding the event listeners to buttons for the charts
+    
+        // First the Graph / Pie buttons + toggling classes
+        $(".chart-btn").on("click", function(){
 
-function chartToggle(btn){
-    if(btn.classList.contains("graph")){
-        document.getElementById("rates2").style.visibility = "";
-        document.getElementById("rates2").style.height = "";
-        document.getElementById("rates1").style.visibility = "hidden";
-        document.getElementById("rates1").style.height = "0";
-        btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
-        document.getElementById("pie-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
-    } else {
-        document.getElementById("rates1").style.visibility = "";
-        document.getElementById("rates1").style.height = "";
-        document.getElementById("rates2").style.visibility = "hidden";
-        document.getElementById("rates2").style.height = "0";
-        btn.style.cssText = "color: #2289FF; text-decoration: underline; font-weight: bold;";
-        document.getElementById("graph-btn").style.cssText = "color: rgba(0, 0, 0, 0.79); text-decoration: none; font-weight: normal;";
-    }
-};
+            if($(this).hasClass("graph")){
+                $(this).addClass("chart-active");
+                $(".pie").removeClass("chart-active");
+                $("#rates2").removeClass("hidden");
+                $("#rates1").addClass("hidden");
+            } else {
+                $(".graph").removeClass("chart-active");
+                $(this).addClass("chart-active");
+                $("#rates1").removeClass("hidden");
+                $("#rates2").addClass("hidden");
+            }
+
+            ChartRender();
+        })
+
+        // Then the data buttons
+        $("#randomize").on("click", Randomize);
+        $("#ajaxpost").on("click", AjaxPOST);
+        $("#serverdata").on("click", serverData);
