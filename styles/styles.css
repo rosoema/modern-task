@@ -7,7 +7,6 @@
 
 body {
     padding: 20px 0 0 0;
-    box-sizing: border-box;
 }
 
 /* - - - - - Editing the intro section - - - - - */
@@ -63,7 +62,7 @@ h1 span {
 }
 
 .intro-background {
-    background-image: url("./media/pierre-chatel-innocenti-gxyeia7Syuk-unsplash.jpg");
+    background-image: url("../media/pierre-chatel-innocenti-gxyeia7Syuk-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -141,7 +140,7 @@ h2 {
     height: fit-content;
 }
 
-.sticker {
+.badge {
     font: normal 11px "Noto Sand KR";
     color: white;
     padding: 7px 20px;
@@ -284,6 +283,10 @@ h2 {
 
 /* - - - - - Editing Apt Rates Section - - - - - */
 
+.hide{
+    display: none;
+}
+
 .apt-rates {
     background-color: #F4F7FA;
     text-align: center;
@@ -325,11 +328,6 @@ h2 {
 .data-btn:active {
     background-color: #0955ab81;
     color: white;
-}
-
-.hidden {
-    visibility: hidden;
-    height: 0;
 }
 
 .canvasjs-chart-container {

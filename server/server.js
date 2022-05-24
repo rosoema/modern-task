@@ -6,7 +6,7 @@ const cors = require("cors");
 const server = express();
 const port = 3000;
 
-server.use(cors());
+server.use(cors()); // CORS middleware
 
 let my_data = {
     "bars": {
@@ -37,10 +37,10 @@ server.get("/", (req, res) => {
     for(let [key,value] of Object.entries(random)){
         Object.keys(value).forEach( key => {
             value[key] = Math.floor(Math.random()*51)
-        })
+        });
     }
     
-    res.send(random);
+    res.json(random);
 
 });
 

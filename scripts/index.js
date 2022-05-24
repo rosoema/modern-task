@@ -3,7 +3,7 @@
 const apartment_data = [
     {
         distance: "1.2 km",
-        sticker: "FOR RENT",
+        badge: "FOR RENT",
         location: "Knightsbridge",
         price: "$2,500",
         name: "Apartment London",
@@ -11,12 +11,12 @@ const apartment_data = [
         bedrooms: 2,
         bathrooms: 2,
         squareFt: 1776,
-        agent_profile: "./src/media/agents/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg",
-        apt_image: "src/media/apts/apt1.jpg"
+        agent_profile: "./media/agents/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg",
+        apt_image: "media/apts/apt1.jpg"
     },
     {
         distance: "20 km",
-        sticker: "FOR SELL",
+        badge: "FOR SELL",
         location: "Belmont Gardens, Chicago",
         price: "$30000",
         name: "Studio Apartment",
@@ -24,12 +24,12 @@ const apartment_data = [
         bedrooms: 3,
         bathrooms: 2,
         squareFt: 2500,
-        agent_profile: "./src/media/agents/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
-        apt_image: "src/media/apts/apt2.jpg"
+        agent_profile: "./media/agents/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
+        apt_image: "media/apts/apt2.jpg"
     },
     {
         distance: "5.6 km",
-        sticker: "FOR RENT",
+        badge: "FOR RENT",
         location: "Timber Yard, Birmingham City Center, B5",
         price: "$379,000",
         name: "Galliard Homes Apartment",
@@ -37,8 +37,8 @@ const apartment_data = [
         bedrooms: 2,
         bathrooms: 1,
         squareFt: 1041,
-        agent_profile: "./src/media/agents/clayton-mpDV4xaFP8c-unsplash.jpg",
-        apt_image: "src/media/apts/apt3.jpg"
+        agent_profile: "./media/agents/clayton-mpDV4xaFP8c-unsplash.jpg",
+        apt_image: "media/apts/apt3.jpg"
     }
 ];
 
@@ -67,16 +67,15 @@ let chart_data = {
     ],
 };
 
-// - - - - - Function to render the charts - - - - - 
+// - - - - - Charts defined - - - - -
 
-function ChartRender(){
-    CanvasJS.addColorSet("blues", [
-        "#186AA5",
-        "#0FA8E2",
-        "#98E3FE"
-    ]);
+CanvasJS.addColorSet("blues", [
+    "#186AA5",
+    "#0FA8E2",
+    "#98E3FE"
+]);
 
-    let chart1 = new CanvasJS.Chart("rates1",
+let chart1 = new CanvasJS.Chart("rates1",
 	{
         colorSet: "blues",
         legend:{
@@ -95,11 +94,9 @@ function ChartRender(){
             indexLabelPlacement: "inside",
             dataPoints: chart_data.pie
         }]
-    });
+});
 
-	chart1.render();
-
-    let chart2 = new CanvasJS.Chart("rates2",
+let chart2 = new CanvasJS.Chart("rates2",
 	{
         axisY: {
             lineColor: "transparent",
@@ -121,11 +118,16 @@ function ChartRender(){
         dataPointMaxWidth: 20,
         data: [{
             color: "#186AA5",
-            dataPoints: chart_data.bars,
-            radius: 5
+            dataPoints: chart_data.bars
         }]
-    });
-	chart2.render();
+});
+
+// - - - - - Function to render the charts - - - - - 
+
+function ChartRender(){
+
+	$("#rates2").hasClass("hide") ? chart1.render() : chart2.render()
+
 };
 
 // - - - - - Function to Randomize data locally - - - - - 
@@ -142,28 +144,20 @@ function Randomize(){
 
 function receivedData(data){
 
-    for(let data_key in data){                                                              // First we iterate over both object (received data and chart_data)
-        for(let chart_key in chart_data){
-            if(data_key == chart_key){                                                      // Then we check if their keys match (e.g. bars == bars)
-                for(let data_key_lvl2 in data[data_key]){                                   // If yes, we iterate over their keys' values
-                    chart_data[chart_key].forEach( prop => {
-                        if(prop.label == data_key_lvl2 || prop.name == data_key_lvl2){      // Since chart_data has more properties, we check for name/label match to the key
-                            prop.y = data[data_key][data_key_lvl2];                         // If they match, we assign the values of received data to chart_data    
-                        }
-                    })
-                }
-            }
-        }
+    for(let key in chart_data){                                                         // We iterate over our chart_data object, then over the bars and pie objects
+        chart_data[key].map( item => {
+            item.y = item.label ? data[key][item.label] : data[key][item.name]          // We match the value of the received data's key's value (e.g. data["bars"]["Jan"])
+        })
     }
+
+    ChartRender();
 }
 
 // - - - - - Function for the Ajax POST call - - - - - 
 
 function AjaxPOST(){
-
-    $.post("https://cors-anywhere.herokuapp.com/https://api.demoleap.com/exercise", (response) => {
+    $.post("https://api.demoleap.com/exercise", (response) => {
         receivedData(response);
-        ChartRender();
     })
 };
 
@@ -172,15 +166,12 @@ function AjaxPOST(){
 function serverData(){
     $.get("http://localhost:3000/", (data) => {
         receivedData(data);
-        ChartRender();
     })
 }
 
-// - - - - - On Load event - - - - - 
+// - - - - - Rendering the apartment tiles  - - - - - 
 
-window.addEventListener("load", () => {
-
-    // - - - - - Rendering the apartment tiles  - - - - - 
+function renderApt(){
 
     let el = document.getElementById("apartments");
 
@@ -189,12 +180,12 @@ window.addEventListener("load", () => {
         <div class="apt-tile">
             <div class="apt-background" style="background-image: url(${apt.apt_image})">
                 <span class="distance">${apt.distance} away</span>
-                <span class="sticker">${apt.sticker}</span>
+                <span class="badge">${apt.badge}</span>
                 <div class="agent-profile" style="background-image: url(${apt.agent_profile})"></div>
             </div>
 
             <div class="apt-info">
-                <p class="location"><img src="./src/media/icons/map-marker.svg" id="map-marker"/> ${apt.location}</p>
+                <p class="location"><img src="./media/icons/map-marker.svg" id="map-marker"/> ${apt.location}</p>
                 <p class="price">${apt.price}</p>
                 <h3>${apt.name}</h3>
                 <p class="desc">${apt.description}</p>
@@ -205,21 +196,21 @@ window.addEventListener("load", () => {
 
                     <div>
                         <p class="numbers"> ${apt.bedrooms} 
-                            <img src="./src/media/icons/bed.svg" alt="bed-icon"/>
+                            <img src="./media/icons/bed.svg" alt="bed-icon"/>
                         </p>
                         <p class="num-desc">Bedrooms</p>
                     </div>
 
                     <div>
                         <p class="numbers"> ${apt.bathrooms} 
-                            <img src="./src/media/icons/bathtub.svg" alt="bath-icon"/>
+                            <img src="./media/icons/bathtub.svg" alt="bath-icon"/>
                         </p>
                         <p class="num-desc">Bathrooms</p>
                     </div>
 
                     <div>
                         <p class="numbers"> ${apt.squareFt} 
-                            <img src="./src/media/icons/squareft.svg" alt="ft-icon"/>
+                            <img src="./media/icons/squareft.svg" alt="ft-icon"/>
                         </p>
                         <p class="num-desc">Square Ft</p>
                     </div>
@@ -228,13 +219,13 @@ window.addEventListener("load", () => {
 
                 <div class="buttons">
                     <div class="button-icons">
-                        <img src="./src/media/icons/fullscreen-exit.svg" alt="fullscreen-exit-icon"/>
+                        <img src="./media/icons/fullscreen-exit.svg" alt="fullscreen-exit-icon"/>
                     </div>
                     <div class="button-icons special">
-                        <img src="./src/media/icons/heart.svg" alt="fullscreen-exit-icon"/>
+                        <img src="./media/icons/heart.svg" alt="fullscreen-exit-icon"/>
                     </div>
                     <div class="button-icons">
-                        <img src="./src/media/icons/plus-circle.svg" alt="fullscreen-exit-icon"/>
+                        <img src="./media/icons/plus-circle.svg" alt="fullscreen-exit-icon"/>
                     </div>
                 </div>
             </div>
@@ -242,32 +233,35 @@ window.addEventListener("load", () => {
         `
     ).join("");
 
-    // - - - - - Rendering the chart data - - - - - 
+}
 
+// - - - - - On Load event - - - - - 
+
+window.addEventListener("load", () => {
+
+    renderApt();
     Randomize();
+
+    $("#randomize").on("click", Randomize);
+    $("#ajaxpost").on("click", AjaxPOST);
+    $("#serverdata").on("click", serverData);
+
 });
 
-// Adding the event listeners to buttons for the charts
-    
-        // First the Graph / Pie buttons + toggling classes
-        $(".chart-btn").on("click", function(){
+// - - - - - Creating a jQuery event for the chart and graph - - - - -
 
-            if($(this).hasClass("graph")){
-                $(this).addClass("chart-active");
-                $(".pie").removeClass("chart-active");
-                $("#rates2").removeClass("hidden");
-                $("#rates1").addClass("hidden");
-            } else {
-                $(".graph").removeClass("chart-active");
-                $(this).addClass("chart-active");
-                $("#rates1").removeClass("hidden");
-                $("#rates2").addClass("hidden");
-            }
+$(".chart-btn").on("click", function(){
 
-            ChartRender();
-        })
+    $(this).addClass("chart-active");
+    $(this).siblings().removeClass("chart-active");
 
-        // Then the data buttons
-        $("#randomize").on("click", Randomize);
-        $("#ajaxpost").on("click", AjaxPOST);
-        $("#serverdata").on("click", serverData);
+    if($(this).hasClass("graph")){
+        $("#rates1").addClass("hide");
+        $("#rates2").removeClass("hide");
+    } else {
+        $("#rates2").addClass("hide");
+        $("#rates1").removeClass("hide");
+    }
+
+    ChartRender();
+});
